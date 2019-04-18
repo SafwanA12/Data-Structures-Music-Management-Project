@@ -1,0 +1,31 @@
+package saf;
+
+public class CreateSong {
+
+	private String song_title;
+	private String song_artist;
+
+	CreateSong(String title, String artist) {
+		setSong(title);
+		setArtist(artist);
+	}
+
+	public String getSong() {
+		return song_title;
+	}
+
+	public void setSong(String song1) {
+		song_title = song1;
+	}
+
+	public String getArist() {
+		return song_artist;
+	}
+
+	public void setArtist(String artist1) {
+		song_artist = artist1;
+	}
+	public String toString() {
+		return new String(song_title + " - " + song_artist);
+	}
+}

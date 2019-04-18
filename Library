@@ -1,0 +1,41 @@
+package saf;
+
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class library {
+	static CreateSong dimension = new CreateSong("4th Dimension", "Kid Cudi");
+	static CreateSong Alien = new CreateSong("Alien Boy", "Oliver Tree");
+	static CreateSong Idea = new CreateSong("Bad Idea", "Ariana Grande");
+	static CreateSong Alright = new CreateSong("Be Alright", "Ariana Grande");
+	static CreateSong Bury = new CreateSong("Bury Your Friends", "Billy Eilish");
+	static CreateSong Chance = new CreateSong("By Chance", "Rae Sremmurd");
+	static CreateSong Baby = new CreateSong("Charcoal Baby", "Blood Orange");
+	static CreateSong Green = new CreateSong("Collard Greens", "Schoolboy Q");
+	static CreateSong Money = new CreateSong("Money Longer", "Lil Uzi Vert");
+	static CreateSong Call = new CreateSong("One Call", "Gunna");
+	static CreateSong Phantom = new CreateSong("When I'm Small", "Phantogram");
+	
+	
+
+	public static void main(String[] args) {
+		HashSet<Object> lib = new HashSet<Object>();
+		lib.add(dimension);
+		lib.add(Alien);
+		lib.add(Idea);
+		lib.add(Alright);
+		lib.add(Bury);
+		lib.add(Chance);
+		lib.add(Baby);
+		lib.add(Green);
+		lib.add(Money);
+		lib.add(Call);
+		lib.add(Phantom);
+
+		Iterator<Object> i = lib.iterator();
+		while (i.hasNext())
+			System.out.println(i.next().toString());
+	}
+
+}
+

@@ -1,0 +1,69 @@
+# Data-Structures-Music-Management-Project
+package saf;
+public class LinkedList 
+{
+Node head;
+
+static class Node
+{
+	CreateSong song; 
+	Node next;
+	
+	Node(CreateSong cs)
+	{
+	 song = cs;
+	 next = null;
+	}
+}
+
+
+public static void main (String [] args)
+{
+	LinkedList playlist = new LinkedList();
+	
+	CreateSong dimension = new CreateSong("4th Dimension", "Kid Cudi");
+	CreateSong Alien = new CreateSong("Alien Boy", "Oliver Tree");
+	CreateSong Idea = new CreateSong("Bad Idea", "Ariana Grande");
+	CreateSong Alright = new CreateSong("Be Alright", "Ariana Grande");
+	CreateSong Bury = new CreateSong("Bury Your Friends", "Billy Eilish");
+	CreateSong Chance = new CreateSong("By Chance", "Rae Sremmurd");
+    CreateSong Baby = new CreateSong("Charcoal Baby", "Blood Orange");
+	CreateSong Green = new CreateSong("Collard Greens", "Schoolboy Q");
+	CreateSong Money = new CreateSong("Money Longer", "Lil Uzi Vert");
+	CreateSong Call = new CreateSong("One Call", "Gunna");
+	CreateSong Phantom = new CreateSong("When I'm Small", "Phantogram");
+	 
+	playlist.head = new Node(dimension);
+	Node second = new Node(Alien);
+	Node third = new Node(Idea);
+	Node fourth = new Node(Alright);
+	Node fifth = new Node(Bury);
+	Node sixth = new Node(Chance);
+	Node seventh = new Node(Baby);
+	Node eighth = new Node(Green);
+	Node ninth = new Node(Money);
+	Node tenth = new Node(Call);
+	Node eleventh = new Node(Phantom);
+	
+	
+	playlist.head.next = second;
+	second.next = third;
+	third.next = fourth;
+	fourth.next = fifth;
+	fifth.next = sixth;
+	sixth.next = seventh;
+	seventh.next = eighth;
+	eighth.next = ninth;
+	ninth.next = tenth;
+	tenth.next = eleventh;
+	
+	
+	Node n = playlist.head;
+	while (n.next != null)
+	{
+		System.out.println("Playlist: \n" + n.song.getSong() + " by " + n.song.getArtist());
+		n = n.next;
+	}
+}
+
+}

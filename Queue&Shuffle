@@ -1,0 +1,115 @@
+This is the newSongs class:
+public class newSongs {
+	String songN;
+    String artistN;
+
+    public newSongs(String songN, String artistN) {
+        this.songN = songN;
+        this.artistN = artistN;
+    }
+
+    public void playSong(){
+        System.out.println("Playing the song: "+songN);
+    }
+
+    public String getSongName() {
+        return songN;
+    }
+
+    public String getArtist() {
+        return artistN;
+    }
+
+    public String toString() {
+        return "Song(" + songN + "; "  + artistN + ")" +"\n"; 
+    }
+
+}
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+This is the main class with Queue:
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Random;
+
+public class QueueExample {
+    public static void main(String[] args) {
+    	List<newSongs> songs = new ArrayList<newSongs>();
+    	newSongs song1 = new newSongs("Alien Boy","Oliver Tree");
+    	newSongs song2 = new newSongs("Bad Idea","Ariana Grande");
+    	newSongs song3 =new newSongs("4th Dimension","Kid Cudi");
+    	newSongs song4 =new newSongs("Be Alright", "Ariana Grande");
+    	newSongs song5 =new newSongs("Bury A Friend", "Billie Eilish");
+        newSongs song6 =new newSongs("By Chance", "Rae Sremmurd");
+        newSongs song7 =new newSongs("Charcoal Baby", "Blood Orange");
+        newSongs song8 =new newSongs("Collard Greens", "Schoolboy Q");
+        newSongs song9 =new newSongs("Money Longer", "Lil Uzi Vert");
+        newSongs song10 =new newSongs("One Call", "Gunna");
+        
+        // Create and initialize a Queue using a LinkedList
+        Queue<newSongs> q = new LinkedList<>();
+        // Adding new elements to the Queue (The Enqueue operation)
+        q.add(song1);
+        q.add(song2);
+        q.add(song3);
+        q.add(song4);
+        q.add(song5);
+        q.add(song6);
+        q.add(song7);
+        q.add(song8);
+        q.add(song9);
+        q.add(song10);
+        
+        //remove the song
+        System.out.println("I want to remove the song '4th Dimension'."+q.remove(song3));        
+        System.out.println("\nAfter Remove: ");
+        for (newSongs nSongs2: q) {
+        	System.out.println(nSongs2);	
+        }
+        System.out.println();
+        //create the shuffle list
+        List<newSongs> shuffleList = new ArrayList<>();
+        shuffleList.add(song1);
+        shuffleList.add(song4);
+        shuffleList.add(song5);
+        shuffleList.add(song8);
+        System.out.println("Before shuffle: " +shuffleList);
+        shuffle(shuffleList);
+        System.out.println("After shuffle: " +shuffleList);
+       
+        //create the work-out list
+        System.out.println("I want to create the workout list.");        
+        Queue<newSongs> workout = new LinkedList<>();
+        workout.add(song10);
+        workout.add(song6);
+        workout.add(song9);
+        workout.add(song8);
+        System.out.println();
+        System.out.println();
+        System.out.println("The workout list is : ");
+        for (newSongs nSongs3: workout) {
+        	System.out.println(nSongs3);
+        }
+        
+        }
+    private static void shuffle(List<newSongs> shuffleList) {
+    	int totalElements=shuffleList.size();
+    	Random random = new Random();
+    	for (int loopCounter=0; loopCounter<totalElements; loopCounter++) {
+    		newSongs currentsong = shuffleList.get(loopCounter);
+    		// generate a random index within the range of list size
+    		int randomIndex = loopCounter + random.nextInt(totalElements - loopCounter);
+    		// set the element at current index with the element at random generated index
+    		shuffleList.set(loopCounter, shuffleList.get(randomIndex));
+    		// set the element at random index with the element at current loop index
+    		shuffleList.set(randomIndex, currentsong);
+    	}
+    }
+    
+}

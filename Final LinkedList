@@ -1,0 +1,169 @@
+# Data-Structures-Music-Management-Project
+package saf;
+import java.util.Scanner;
+
+public class LinkedListSongs 
+{
+	
+Node head;
+
+static class Node
+{
+	CreateSong song; 
+	Node next;
+	
+	Node(CreateSong cs)
+	{
+	 song = cs;
+	 next = null;
+	}
+}
+
+//Method to insert a new node 
+public static LinkedListSongs addSong(LinkedListSongs list, CreateSong song) 
+{ 
+    // Create a new node with given data 
+    Node new_node = new Node(song); 
+    new_node.next = null; 
+
+    // If the Linked List is empty, 
+    // then make the new node as head 
+    if (list.head == null) 
+    { 
+        list.head = new_node; 
+    } 
+    else 
+    { 
+        // Else traverse till the last node 
+        // and insert the new_node there 
+        Node last = list.head; 
+        while (last.next != null) 
+        { 
+            last = last.next; 
+        } 
+
+        // Insert the new_node at last node 
+        last.next = new_node; 
+    } 
+    
+    // Return the list by head 
+    return list; 
+} 
+
+//Method to print the LinkedList. 
+public static void printPlayList(LinkedListSongs list) 
+{ 
+    Node currNode = list.head; 
+
+    // Traverse through the LinkedList 
+    while (currNode != null) 
+    { 
+        // Print the data at current node 
+        System.out.print(currNode.song.getSong() + " by " + currNode.song.getArtist() + "\n"); 
+
+        // Go to next node 
+        currNode = currNode.next; 
+    } 
+} 
+
+public LinkedListSongs getPlayList()
+{
+	
+	LinkedListSongs playlist = new LinkedListSongs();
+	
+	Scanner ip = new Scanner(System.in);
+	System.out.println("Would you like to create a playlist? Say yes or no.");
+	String userip = ip.nextLine();
+	
+	
+	if(userip.equalsIgnoreCase("yes"))
+	{
+		System.out.println("Please enter the songs you would like to add to your playlist in thie given format: <Song Name> - <Artist Name>.");
+		System.out.println("When done, type 'end'.");
+		String songsToAdd = ip.nextLine();
+		
+		while (!songsToAdd.equals("end"))
+		{
+			// Splitting the input into song title and artist name
+			int idx = songsToAdd.indexOf("-");
+			String songName = songsToAdd.substring(0, idx -1).trim();
+			String artistName = songsToAdd.substring(idx + 1).trim();
+			
+			CreateSong songg = new CreateSong (songName, artistName);
+			
+			playlist = playlist.addSong(playlist, songg);	// Adding song to list
+			songsToAdd = ip.nextLine();
+		}
+		
+	}
+	else 
+	{
+		System.out.println("Thankyou.");
+	}
+	
+	return playlist;
+}
+
+
+public static LinkedListSongs getPlaylistByArtist(LinkedListSongs list, String nameOfArtist) 
+{ 
+	LinkedListSongs playlistByArtist = new LinkedListSongs();
+	
+        Node last = list.head; 
+       
+        do
+        { 
+        	if(last.song.getArtist().equalsIgnoreCase(nameOfArtist))
+        			{
+        				CreateSong artistVar = new CreateSong(last.song.getSong(), last.song.getArtist());
+        				playlistByArtist = playlistByArtist.addSong(playlistByArtist, artistVar);
+        
+        			}
+        		
+            last = last.next; 
+            
+        } while (last != null);
+        	
+    return playlistByArtist; 
+} 
+
+
+//Main 
+public static void main (String [] args)
+{	
+	LinkedListSongs myPlaylist = new LinkedListSongs(); // LinkedList for entire Playlist.
+	LinkedListSongs artistPlaylist = new LinkedListSongs(); // LinkedList for Specific Srtist's playlist.
+	
+	myPlaylist = myPlaylist.getPlayList();	// Getting entire playlist from user.
+	
+	System.out.println("Your playlist is: "); 	
+	myPlaylist.printPlayList(myPlaylist);	// Prints the entire playlist
+	
+	// Takes artist's name form user as input to create playlist for specific artist
+	Scanner scan = new Scanner(System.in);
+	System.out.println("\nWould you like to create an artist specific playlist? Type yes or no.");
+	String userIP = scan.nextLine();
+	if(userIP.equalsIgnoreCase("yes"))
+	{
+	
+		System.out.println("\nEnter the artist whose playlist you would like to create. (To stop type end)");
+		String artistName = scan.nextLine().trim();
+		
+		while(!artistName.equalsIgnoreCase("end"))
+		{
+			// Getting playlist for specific artist
+			artistPlaylist = artistPlaylist.getPlaylistByArtist(myPlaylist, artistName);
+			
+//			Prints the artist specific playlist
+			System.out.println(artistName + "'s Playlist is: ");
+			artistPlaylist.printPlayList(artistPlaylist);
+			
+			System.out.println("\nMore artists' playlists? (To stop type end)");
+			artistName = scan.nextLine().trim();
+		
+		}
+		
+	}
+	
+}
+}
